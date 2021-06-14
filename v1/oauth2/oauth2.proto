@@ -1,0 +1,58 @@
+syntax = 'proto3';
+package athena.auth2;
+option go_package = "api/v1/oauth2";
+
+import "google/api/annotations.proto";
+
+service Auth2Serivce {
+    rpc Auth(Auth2AuthRequest) returns (Auth2AuthResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/auth2/auth"
+        };
+    };
+
+    rpc Login(Auth2LoginRequest) returns (Auth2LoginResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/auth2/login"
+            body: "*"
+        };
+    };
+
+    rpc Regist(Auth2RegistRequest) returns (Auth2RegistResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/auth2/regist"
+            body: "*"
+        };
+    };
+}
+
+message Auth2AuthRequest {
+    string service = 1;
+}
+
+message Auth2AuthResponse {
+    string service = 1;
+    bool status = 3;
+}
+
+message Auth2LoginRequest {
+    string account = 1;
+    string password = 2;
+    string code = 3;
+}
+
+message Auth2LoginResponse {
+    string token = 1;
+    string account = 2;
+    string name = 3;
+    bool status = 4;
+}
+
+message Auth2RegistRequest {
+    string account = 1;
+    string password = 2;
+}
+
+message Auth2RegistResponse {
+    bool status = 1;
+}
