@@ -1,6 +1,6 @@
 syntax = 'proto3';
 package health;
-option go_package = "api/v1/health";
+option go_package = "v1/health";
 
 import "google/api/annotations.proto";
 
